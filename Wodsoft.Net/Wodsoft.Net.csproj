@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A52E8AC5-2B3D-4518-8E52-D2BB688A66D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wodsoft.Net</RootNamespace>
+    <AssemblyName>Wodsoft.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Communication\Client.cs" />
+    <Compile Include="Communication\CommunicationBase.cs" />
+    <Compile Include="Communication\CommunicationEventArgs.cs" />
+    <Compile Include="Communication\Credential.cs" />
+    <Compile Include="Communication\ICommunication.cs" />
+    <Compile Include="Communication\Server.cs" />
+    <Compile Include="Communication\ServerAuthentication.cs" />
+    <Compile Include="Communication\ServerClient.cs" />
+    <Compile Include="Sockets\IUDPService.cs" />
+    <Compile Include="Service\BinaryDataReader.cs" />
+    <Compile Include="Service\BinaryDataWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ChannelFactory.cs" />
+    <Compile Include="Service\Credential.cs" />
+    <Compile Include="Service\DataFormatter.cs" />
+    <Compile Include="Service\Exception\ChannelNotExistException.cs" />
+    <Compile Include="Service\Exception\ConnectFailedException.cs" />
+    <Compile Include="Service\Exception\MethodNotExistException.cs" />
+    <Compile Include="Service\Exception\MethodParamaterException.cs" />
+    <Compile Include="Service\Exception\MethodRuntimeException.cs" />
+    <Compile Include="Service\InstanceProxy.cs" />
+    <Compile Include="Service\Internal\InstanceTypeBuilder.cs" />
+    <Compile Include="Service\Internal\ChannelMessageFormatter.cs" />
+    <Compile Include="Service\Internal\HostInstanceManager.cs" />
+    <Compile Include="Service\Internal\MessageIOManager.cs" />
+    <Compile Include="Service\Internal\MessageIORecycle.cs" />
+    <Compile Include="Service\Internal\ServiceChannelManager.cs" />
+    <Compile Include="Service\MessageCredential.cs" />
+    <Compile Include="Service\OperationContractAttribute.cs" />
+    <Compile Include="Service\OperationMode.cs" />
+    <Compile Include="Service\SecurityManager.cs" />
+    <Compile Include="Service\SecurityMode.cs" />
+    <Compile Include="Service\ServiceBinding.cs" />
+    <Compile Include="Service\ServiceChannel.cs" />
+    <Compile Include="Service\ServiceClient.cs" />
+    <Compile Include="Service\ServiceContext.cs" />
+    <Compile Include="Service\ServiceContractAttribute.cs" />
+    <Compile Include="Service\ServiceHost.cs" />
+    <Compile Include="Service\ServiceMode.cs" />
+    <Compile Include="Service\ServiceModeAttribute.cs" />
+    <Compile Include="Service\ServiceProvider.cs" />
+    <Compile Include="Service\ServiceSessionState.cs" />
+    <Compile Include="Service\ServiceUnity.cs" />
+    <Compile Include="Service\ServiceUser.cs" />
+    <Compile Include="Sockets\SocketBase.cs" />
+    <Compile Include="Sockets\SocketHandler.cs" />
+    <Compile Include="Sockets\ISocket.cs" />
+    <Compile Include="Sockets\ISocketHandler.cs" />
+    <Compile Include="Sockets\Sniffer.cs" />
+    <Compile Include="Sockets\SnifferEventArgs.cs" />
+    <Compile Include="Sockets\SnifferPacket.cs" />
+    <Compile Include="Sockets\SocketAsyncResult.cs" />
+    <Compile Include="Sockets\SocketAsyncState.cs" />
+    <Compile Include="Sockets\SocketEventArgs.cs" />
+    <Compile Include="Sockets\TCPClient.cs" />
+    <Compile Include="Sockets\TCPListener.cs" />
+    <Compile Include="Sockets\TCPListenerClient.cs" />
+    <Compile Include="Sockets\UDPService.cs" />
+    <Compile Include="Sockets\UDPServiceAsyncState.cs" />
+    <Compile Include="Sockets\UDPServiceEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Communication\CoreServer.txt" />
+    <Content Include="Service\Protocol.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Communication\流程图.vsd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
