@@ -22,7 +22,7 @@ namespace TCP服务器端
             //本机IP：192.168.1.5  127.0.0.1
             //IpAddress xxx.xx.xx.xx IpEndPoint xxx.xx.xx.xx:port
             //IPAddress ipAddress = new IPAddress(new byte[] { 192, 168, 1, 5 });
-            IPAddress ipAddress = IPAddress.Parse("192.168.1.5");
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 88);
             serverSocket.Bind(ipEndPoint);//绑定ip和端口号
             serverSocket.Listen(0);//开始监听端口号 
