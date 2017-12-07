@@ -4,6 +4,9 @@ namespace NetworkCore
 {
     public class Test
     {
-        
+        public void test()
+        {
+            
+        }
     }
 }

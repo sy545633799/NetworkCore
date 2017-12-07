@@ -32,15 +32,12 @@ namespace Server
                                                   client.EndConnect, remoteEP, null);
 
                 byte[] byteData = Encoding.ASCII.GetBytes(msg);
-                var result = client.BeginSend(byteData, 0, byteData.Length, 0,
-                                                                       _ => { }, client);
+                var result = client.BeginSend(byteData, 0, byteData.Length, 0, _ => { }, client);
                 await Task.Factory.FromAsync(result, (r) => client.EndSend(r));
 
                 StateObject state = new StateObject();
                 state.workSocket = client;
-                var received = client.BeginReceive(state.buffer, 0,
-                                StateObject.BufferSize, 0,
-                                                       _ => { }, state);
+                var received = client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, _ => { }, state);
                 var response = await Task<string>.Factory.FromAsync(received, ar =>
                 {
                     ReceiveCallback(ar);
@@ -62,8 +59,7 @@ namespace Server
             if (bytesRead > 0)
             {
                 state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-                client.BeginReceive(state.buffer, 0, bytesRead, SocketFlags.None,
-                                       new AsyncCallback(ReceiveCallback), client);
+                client.BeginReceive(state.buffer, 0, bytesRead, SocketFlags.None, new AsyncCallback(ReceiveCallback), client);
             }
         }
     }
