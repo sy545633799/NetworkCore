@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NetworkCore.Core
+namespace NetworkCore.Core.Common
 {
     /// <summary>
     /// Socket事件参数
