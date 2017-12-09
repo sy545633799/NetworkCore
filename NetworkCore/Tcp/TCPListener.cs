@@ -67,12 +67,13 @@ namespace NetworkCore.Tcp
         //异步监听结束
         private void EndAccept(IAsyncResult result)
         {
-            Socket clientSocket = null;
+            
+            Socket userToken = null;
 
             //获得客户端Socket
             try
             {
-                clientSocket = socket.EndAccept(result);
+                userToken = socket.EndAccept(result);
                 socket.BeginAccept(EndAccept, null);
             }
             catch
@@ -80,11 +81,11 @@ namespace NetworkCore.Tcp
 
             }
 
-            if (clientSocket == null)
+            if (userToken == null)
                 return;
 
             //实例化客户端类
-            UserToken client = new UserToken(this, clientSocket);
+            UserToken client = new UserToken(this, userToken);
             //增加事件钩子
             client.SendCompleted += client_SendCompleted;
             client.ReceiveCompleted += client_ReceiveCompleted;
@@ -95,8 +96,7 @@ namespace NetworkCore.Tcp
                 clients.Add(client);
 
             //客户端连接事件
-            if (AcceptCompleted != null)
-                AcceptCompleted(this, new SocketEventArgs(client, SocketAsyncOperation.Accept));
+            AcceptCompleted?.Invoke(this, new SocketEventArgs(client, SocketAsyncOperation.Accept));
         }
 
         /// <summary>
