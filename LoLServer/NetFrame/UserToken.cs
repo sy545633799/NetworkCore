@@ -15,7 +15,7 @@ namespace NetFrame
        /// <summary>
        /// 用户连接
        /// </summary>
-       public Socket conn;
+       public Socket clientSocket;
        //用户异步接收网络数据对象
        public SocketAsyncEventArgs receiveSAEA;
        //用户异步发送网络数据对象
@@ -35,7 +35,7 @@ namespace NetFrame
 
        public CloseProcess closeProcess;
 
-       public AbsHandlerCenter center;
+       public AbsHandlerCenter hander;
 
        List<byte> cache = new List<byte>();
 
@@ -83,13 +83,13 @@ namespace NetFrame
            //进行消息反序列化
            object message = decode(buff);
            //TODO 通知应用层 有消息到达
-           center.MessageReceive(this, message);
+           hander.MessageReceive(this, message);
            //尾递归 防止在消息处理过程中 有其他消息到达而没有经过处理
            onData();
        }
 
        public void write(byte[] value) {
-           if (conn == null) {
+           if (clientSocket == null) {
                //此连接已经断开了
                closeProcess(this, "调用已经断开的连接");
                return;
@@ -109,7 +109,7 @@ namespace NetFrame
            //设置消息发送异步对象的发送数据缓冲区数据
            sendSAEA.SetBuffer(buff, 0, buff.Length);
            //开启异步发送
-           bool result = conn.SendAsync(sendSAEA);
+           bool result = clientSocket.SendAsync(sendSAEA);
            //是否挂起
            if (!result) {
                sendProcess(sendSAEA);
@@ -127,9 +127,9 @@ namespace NetFrame
                cache.Clear();
                isReading = false;
                isWriting = false;
-               conn.Shutdown(SocketShutdown.Both);
-               conn.Close();
-               conn = null;
+               clientSocket.Shutdown(SocketShutdown.Both);
+               clientSocket.Close();
+               clientSocket = null;
            }
            catch (Exception e) {
                Console.WriteLine(e.Message);

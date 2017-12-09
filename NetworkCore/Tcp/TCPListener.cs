@@ -1,27 +1,26 @@
-﻿using System;
+﻿using NetworkCore.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Sockets;
 using System.Net;
-using System.Threading;
+using System.Net.Sockets;
+using System.Text;
 
-namespace Wodsoft.Net.Sockets
+namespace NetworkCore.Tcp
 {
     /// <summary>
     /// TCP监听端
     /// </summary>
-    public class TCPListener : IEnumerable<TCPListenerClient>, IDisposable
+    public class TCPListener : IEnumerable<UserToken>, IDisposable
     {
         private Socket socket;
-        private HashSet<TCPListenerClient> clients;
+        private HashSet<UserToken> clients;
 
         /// <summary>
         /// 实例化TCP监听者。
         /// </summary>
         public TCPListener()
         {
-            clients = new HashSet<TCPListenerClient>();
+            clients = new HashSet<UserToken>();
             IsStarted = false;
             Handler = new SocketHandler();
             IsUseAuthenticate = false;
@@ -33,20 +32,7 @@ namespace Wodsoft.Net.Sockets
 
         public int Count { get { return clients.Count; } }
 
-        private int port;
-        /// <summary>
-        /// 监听端口。
-        /// </summary>
-        public int Port
-        {
-            get { return port; }
-            set
-            {
-                if (value < 0 || value > 65535)
-                    throw new ArgumentOutOfRangeException(port + "不是有效端口。");
-                port = value;
-            }
-        }
+        private int _port;
 
         /// <summary>
         /// 服务启动中
@@ -56,20 +42,21 @@ namespace Wodsoft.Net.Sockets
         /// <summary>
         /// 开始服务。
         /// </summary>
-        public void Start()
+        public void Start(int port)
         {
             lock (this)
             {
                 if (IsStarted)
                     throw new InvalidOperationException("已经开始服务。");
+                _port = port;
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 //绑定端口
                 //可以引发端口被占用异常
-                socket.Bind(new IPEndPoint(IPAddress.Any, port));
+                socket.Bind(new IPEndPoint(IPAddress.Any, _port));
                 //监听队列
                 socket.Listen(ushort.MaxValue);
                 //如果端口是0，则是随机端口，把这个端口赋值给port
-                port = ((IPEndPoint)socket.LocalEndPoint).Port;
+                _port = ((IPEndPoint)socket.LocalEndPoint).Port;
                 //服务启动中设置为true
                 IsStarted = true;
                 //开始异步监听
@@ -97,7 +84,7 @@ namespace Wodsoft.Net.Sockets
                 return;
 
             //实例化客户端类
-            TCPListenerClient client = new TCPListenerClient(this, clientSocket);
+            UserToken client = new UserToken(this, clientSocket);
             //增加事件钩子
             client.SendCompleted += client_SendCompleted;
             client.ReceiveCompleted += client_ReceiveCompleted;
@@ -121,7 +108,7 @@ namespace Wodsoft.Net.Sockets
             {
                 if (!IsStarted)
                     throw new InvalidOperationException("没有开始服务。");
-                foreach (TCPListenerClient client in clients)
+                foreach (UserToken client in clients)
                 {
                     client.Disconnect();
                     client.DisconnectCompleted -= client_DisconnectCompleted;
@@ -156,11 +143,11 @@ namespace Wodsoft.Net.Sockets
         {
             //移除客户端
             lock (clients)
-                clients.Remove((TCPListenerClient)e.Socket);
+                clients.Remove((UserToken)e.UserToken);
 
-            e.Socket.DisconnectCompleted -= client_DisconnectCompleted;
-            e.Socket.ReceiveCompleted -= client_ReceiveCompleted;
-            e.Socket.SendCompleted -= client_SendCompleted;
+            e.UserToken.DisconnectCompleted -= client_DisconnectCompleted;
+            e.UserToken.ReceiveCompleted -= client_ReceiveCompleted;
+            e.UserToken.SendCompleted -= client_SendCompleted;
             DisconnectCompleted?.Invoke(this, e);
         }
 
@@ -180,7 +167,7 @@ namespace Wodsoft.Net.Sockets
         /// 获取客户端泛型。
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<TCPListenerClient> GetEnumerator()
+        public IEnumerator<UserToken> GetEnumerator()
         {
             return clients.GetEnumerator();
         }

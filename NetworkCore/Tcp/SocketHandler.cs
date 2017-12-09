@@ -1,10 +1,11 @@
+using NetworkCore.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
 
-namespace NetworkCore.Core.Common
+
+namespace NetworkCore.Tcp
 {
     /// <summary>
     /// Socket处理程序

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace NetworkCore.Core.Common
+namespace NetworkCore.Common
 {
-    public interface ISocket
+    public interface IClient
     {
         /// <summary>
         /// 获取是否已连接。

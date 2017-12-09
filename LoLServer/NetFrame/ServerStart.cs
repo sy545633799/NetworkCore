@@ -24,7 +24,7 @@ namespace NetFrame
        /// <summary>
        /// 消息处理中心，由外部应用传入
        /// </summary>
-       public AbsHandlerCenter center;
+       public AbsHandlerCenter socketHander;
        /// <summary>
        /// 初始化通信监听
        /// </summary>
@@ -54,7 +54,7 @@ namespace NetFrame
                token.decode = decode;
                token.sendProcess = ProcessSend;
                token.closeProcess = ClientClose;
-               token.center = center;
+               token.hander = socketHander;
                pool.push(token);
            }
            //监听当前服务器网卡所有可用IP地址的port端口
@@ -96,9 +96,9 @@ namespace NetFrame
        public void ProcessAccept(SocketAsyncEventArgs e) {
            //从连接对象池取出连接对象 供新用户使用
            UserToken token = pool.pop();
-           token.conn = e.AcceptSocket;
+           token.clientSocket = e.AcceptSocket;
            //TODO 通知应用层 有客户端连接
-           center.ClientConnect(token);
+           socketHander.ClientConnect(token);
            //开启消息到达监听
            StartReceive(token);
            //释放当前异步对象
@@ -113,7 +113,7 @@ namespace NetFrame
            try
            {
                //用户连接对象 开启异步数据接收
-               bool result = token.conn.ReceiveAsync(token.receiveSAEA);
+               bool result = token.clientSocket.ReceiveAsync(token.receiveSAEA);
                //异步事件是否挂起
                if (!result)
                {
@@ -176,10 +176,10 @@ namespace NetFrame
        /// <param name="token"> 断开连接的用户对象</param>
        /// <param name="error">断开连接的错误编码</param>
        public void ClientClose(UserToken token,string error) {
-           if (token.conn != null) {
+           if (token.clientSocket != null) {
                lock (token) { 
                 //通知应用层面 客户端断开连接了
-                   center.ClientClose(token, error);
+                   socketHander.ClientClose(token, error);
                    token.Close();
                    //加回一个信号量，供其它用户使用
                    pool.push(token);

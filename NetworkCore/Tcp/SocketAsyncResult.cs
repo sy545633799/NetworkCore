@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading;
 
-namespace NetworkCore.Core.Common
+namespace NetworkCore.Tcp
 {
     /// <summary>
     /// Socket异步操作状态

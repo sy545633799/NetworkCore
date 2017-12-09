@@ -17,7 +17,7 @@ namespace LOLServer
             //服务器初始化
             ServerStart ss = new ServerStart(9000);
             ss.encode = MessageEncoding.encode;
-            ss.center = new HandlerCenter();
+            ss.socketHander = new HandlerCenter();
             ss.decode = MessageEncoding.decode;
             ss.LD = LengthEncoding.decode;
             ss.LE = LengthEncoding.encode;

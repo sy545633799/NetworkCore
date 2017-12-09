@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NetworkCore.Core.Common
+namespace NetworkCore.Common
 {
-    public class SocketBase : ISocket, IDisposable
+    public class ClientBase : IClient, IDisposable
     {
         protected Socket Socket { get; private set; }
         protected Stream Stream { get; set; }
@@ -15,7 +15,7 @@ namespace NetworkCore.Core.Common
         /// <summary>
         /// 实例化TCP客户端。
         /// </summary>
-        public SocketBase(Socket socket, ISocketHandler socketHandler)
+        public ClientBase(Socket socket, ISocketHandler socketHandler)
         {
             Socket = socket ?? throw new ArgumentNullException("socket");
             socket.NoDelay = true;

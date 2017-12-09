@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NetworkCore.Core.Common
+namespace NetworkCore.Common
 {
     internal class SocketAsyncState
     {

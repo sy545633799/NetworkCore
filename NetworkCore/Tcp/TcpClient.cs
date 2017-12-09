@@ -1,18 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using NetworkCore.Core.Common;
+using NetworkCore.Common;
 using System.Net.Sockets;
 using System.Net.Security;
 using System.Threading;
 using System.Net;
 
-namespace NetworkCore.Core
+namespace NetworkCore.Tcp
 {
     /// <summary>
     /// TCP客户端
     /// </summary>
-    public class TCPClient : SocketBase
+    public class TCPClient : ClientBase
     {
         /// <summary>
         /// 实例化TCP客户端。
@@ -48,6 +46,7 @@ namespace NetworkCore.Core
                 {
                     Thread.Sleep(1);
                 }
+                
             }
         }
 
@@ -69,6 +68,7 @@ namespace NetworkCore.Core
                 //设置状态为异步
                 state.IsAsync = true;
                 //Socket异步连接
+                
                 Socket.BeginConnect(endpoint, EndConnect, state);
             }
         }
