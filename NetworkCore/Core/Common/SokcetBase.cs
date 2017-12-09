@@ -17,13 +17,9 @@ namespace NetworkCore.Core.Common
         /// </summary>
         public SocketBase(Socket socket, ISocketHandler socketHandler)
         {
-            if (socket == null)
-                throw new ArgumentNullException("socket");
-            if (socketHandler == null)
-                throw new ArgumentNullException("socketHandler");
-            Socket = socket;
+            Socket = socket ?? throw new ArgumentNullException("socket");
             socket.NoDelay = true;
-            Handler = socketHandler;
+            Handler = socketHandler ?? throw new ArgumentNullException("socketHandler");
             data = new Dictionary<string, object>();
         }
 
