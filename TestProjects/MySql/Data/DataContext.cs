@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using test2.Models;
+using MySql.Models;
 
-namespace test2.Data
+namespace MySql.Data
 {
     public class DataContext: DbContext
     {

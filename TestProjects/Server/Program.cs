@@ -1,4 +1,6 @@
-﻿using System;
+using MySql.Data;
+using MySql.Models;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -19,7 +21,33 @@ namespace Server
             });
             Task.WaitAll(Task.Delay(2000));
         }
+
+        public void EFCoreTest()
+        {
+            using (var context = new DataContext())
+            {
+                context.Database.EnsureCreated();
+
+                //context.Add(new User { Name = "愤怒的TryCatch" });
+                //User user = new User { Name = "小鸟的愤怒" };
+
+                //context.Add(user);
+                //context.Remove<User>(user);
+                //User user = new User { Name = "新的小鸟5"};
+
+                User usr = new User { Name = "test01", Age = 18 };
+                context.Add(usr);
+                context.SaveChanges();
+
+                //User user = context.Find<User>(6);
+                //Console.WriteLine(user.Name);
+                //Console.ReadKey();
+
+            }
+        }
     }
+
+    
 
     public static class SocketExts
     {
