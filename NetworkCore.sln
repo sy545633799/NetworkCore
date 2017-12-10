@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkCore", "NetworkCore\NetworkCore.csproj", "{C3169648-E285-4079-A41A-BE2753D16757}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoLServer", "LoLServer", "{62186F4C-85D8-40B4-8822-4A4F95E17A3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFrame", "LoLServer\NetFrame\NetFrame.csproj", "{E5C2883A-AC94-44EC-B56B-CA2DB2D70646}"
@@ -49,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "TestProjects\Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{343B38BD-BF38-4CD0-95B1-A5B3B757A56A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkCore", "NetworkCore\NetworkCore.csproj", "{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
@@ -57,14 +57,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C3169648-E285-4079-A41A-BE2753D16757}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3169648-E285-4079-A41A-BE2753D16757}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5C2883A-AC94-44EC-B56B-CA2DB2D70646}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
 		{E5C2883A-AC94-44EC-B56B-CA2DB2D70646}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
 		{E5C2883A-AC94-44EC-B56B-CA2DB2D70646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -201,6 +193,14 @@ Global
 		{343B38BD-BF38-4CD0-95B1-A5B3B757A56A}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{343B38BD-BF38-4CD0-95B1-A5B3B757A56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{343B38BD-BF38-4CD0-95B1-A5B3B757A56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAB9264-A9CF-4CE5-B3F2-4E3942B4D376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
