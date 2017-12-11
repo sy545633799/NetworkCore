@@ -1,11 +1,11 @@
 using System;
-using NetworkCore.Common;
+using NetworkCore.Wodsoft.Common;
 using System.Net.Sockets;
 using System.Net.Security;
 using System.Threading;
 using System.Net;
 
-namespace NetworkCore.Tcp
+namespace NetworkCore.Wodsoft.Tcp
 {
     /// <summary>
     /// TCP客户端
@@ -15,8 +15,8 @@ namespace NetworkCore.Tcp
         /// <summary>
         /// 实例化TCP客户端。
         /// </summary>
-        public TCPClient()
-            : base(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp), new SocketHandler())
+        public TCPClient(ISocketHandler handler)
+            : base(new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp), handler)
         {
         }
 

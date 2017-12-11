@@ -1,9 +1,9 @@
-﻿using NetworkCore.Common;
+using NetworkCore.Wodsoft.Common;
 using System.Net.Sockets;
 using System.Net.Security;
 using System.Threading;
 
-namespace NetworkCore.Tcp
+namespace NetworkCore.Wodsoft.Tcp
 {
     public class UserToken : ClientBase
     {

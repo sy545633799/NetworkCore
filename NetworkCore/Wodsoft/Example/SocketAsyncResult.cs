@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace NetworkCore.Tcp
+namespace NetworkCore.Wodsoft.Example
 {
     /// <summary>
     /// Socket异步操作状态

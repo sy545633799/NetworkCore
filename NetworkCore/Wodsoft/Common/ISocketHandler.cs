@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace NetworkCore.Common
+namespace NetworkCore.Wodsoft.Common
 {
     /// <summary>
     /// Socket处理程序接口

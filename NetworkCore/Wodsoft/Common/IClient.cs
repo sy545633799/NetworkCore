@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace NetworkCore.Common
+namespace NetworkCore.Wodsoft.Common
 {
     public interface IClient
     {

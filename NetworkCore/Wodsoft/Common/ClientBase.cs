@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NetworkCore.Common
+namespace NetworkCore.Wodsoft.Common
 {
     public class ClientBase : IClient, IDisposable
     {
@@ -202,8 +202,7 @@ namespace NetworkCore.Common
             Handler.BeginReceive(Stream, EndReceive, state);
 
             //引发接收完成事件
-            if (ReceiveCompleted != null)
-                ReceiveCompleted(this, new SocketEventArgs(this, SocketAsyncOperation.Receive) { Data = data });
+            ReceiveCompleted?.Invoke(this, new SocketEventArgs(this, SocketAsyncOperation.Receive) { Data = data });
         }
 
         #endregion

@@ -1,11 +1,10 @@
-using NetworkCore.Common;
+using NetworkCore.Wodsoft.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
-
-namespace NetworkCore.Tcp
+namespace NetworkCore.Wodsoft.Example
 {
     /// <summary>
     /// Socket处理程序
@@ -204,9 +203,6 @@ namespace NetworkCore.Tcp
             //stream不能为null
             if (stream == null)
                 throw new ArgumentNullException("stream");
-            //回调函数不能为null
-            if (callback == null)
-                throw new ArgumentNullException("callback");
             //stream异常
             if (!stream.CanWrite)
                 throw new ArgumentException("stream不支持写入。");
@@ -218,7 +214,7 @@ namespace NetworkCore.Tcp
             shs.Data = data;
             shs.AsyncResult = result;
             shs.Stream = stream;
-            shs.AsyncCallBack = callback;
+            shs.AsyncCallBack = callback ?? throw new ArgumentNullException("callback");
             shs.DataLength = 0;
 
             //锁定SendQueue

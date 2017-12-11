@@ -12,14 +12,13 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            var cmd = "add 1 2 4" + Environment.NewLine;
-            Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
-            Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
-            Task.Run(async delegate {
-                await SocketExts.SendAsync("ECHO this is a test"
-                 + Environment.NewLine);
-            });
-            Task.WaitAll(Task.Delay(2000));
+            
+        }
+
+        public static void TcpTest()
+        {
+            NetworkCore.Tcp.TCPClient client = new NetworkCore.Tcp.TCPClient(new Tcp.SocketHandler());
+            
         }
 
         public void EFCoreTest()
@@ -45,9 +44,19 @@ namespace Server
 
             }
         }
-    }
 
-    
+        public static void SocketExtsTest()
+        {
+            //var cmd = "add 1 2 4" + Environment.NewLine;
+            //Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
+            //Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
+            //Task.Run(async delegate {
+            //    await SocketExts.SendAsync("ECHO this is a test"
+            //     + Environment.NewLine);
+            //});
+            //Task.WaitAll(Task.Delay(2000));
+        }
+    }
 
     public static class SocketExts
     {

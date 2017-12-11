@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NetworkCore.Common
+namespace NetworkCore.Wodsoft.Common
 {
     /// <summary>
     /// Socket事件参数
@@ -13,13 +13,13 @@ namespace NetworkCore.Common
         /// <summary>
         /// 实例化Socket事件参数
         /// </summary>
-        /// <param name="token">相关Socket</param>
+        /// <param name="client">相关Socket</param>
         /// <param name="operation">操作类型</param>
-        public SocketEventArgs(IClient token, SocketAsyncOperation operation)
+        public SocketEventArgs(IClient client, SocketAsyncOperation operation)
         {
-            if (token == null)
+            if (client == null)
                 throw new ArgumentNullException("socket");
-            UserToken = token;
+            Client = client;
             Operation = operation;
         }
 
@@ -36,7 +36,7 @@ namespace NetworkCore.Common
         /// <summary>
         /// 获取事件相关Socket
         /// </summary>
-        public IClient UserToken { get; private set; }
+        public IClient Client { get; private set; }
 
         /// <summary>
         /// 获取事件操作类型。

@@ -1,11 +1,11 @@
-﻿using NetworkCore.Common;
+using NetworkCore.Wodsoft.Common;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NetworkCore.Tcp
+namespace NetworkCore.Wodsoft.Tcp
 {
     /// <summary>
     /// TCP监听端
@@ -18,11 +18,11 @@ namespace NetworkCore.Tcp
         /// <summary>
         /// 实例化TCP监听者。
         /// </summary>
-        public TCPListener()
+        public TCPListener(ISocketHandler handler)
         {
             clients = new HashSet<UserToken>();
             IsStarted = false;
-            Handler = new SocketHandler();
+            Handler = handler;
             IsUseAuthenticate = false;
         }
 
@@ -143,11 +143,11 @@ namespace NetworkCore.Tcp
         {
             //移除客户端
             lock (clients)
-                clients.Remove((UserToken)e.UserToken);
+                clients.Remove((UserToken)e.Client);
 
-            e.UserToken.DisconnectCompleted -= client_DisconnectCompleted;
-            e.UserToken.ReceiveCompleted -= client_ReceiveCompleted;
-            e.UserToken.SendCompleted -= client_SendCompleted;
+            e.Client.DisconnectCompleted -= client_DisconnectCompleted;
+            e.Client.ReceiveCompleted -= client_ReceiveCompleted;
+            e.Client.SendCompleted -= client_SendCompleted;
             DisconnectCompleted?.Invoke(this, e);
         }
 
