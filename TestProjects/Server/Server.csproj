@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\NetworkCore\NetworkCore.csproj" />
     <ProjectReference Include="..\MySql\MySql.csproj" />
   </ItemGroup>
 

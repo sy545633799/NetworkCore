@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NetworkCore\NetworkCore.csproj">
+      <Project>{8fab9264-a9cf-4ce5-b3f2-4e3942b4d376}</Project>
+      <Name>NetworkCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,7 +17,7 @@ namespace Server
 
         public static void TcpTest()
         {
-            NetworkCore.Tcp.TCPClient client = new NetworkCore.Tcp.TCPClient(new Tcp.SocketHandler());
+            
             
         }
 

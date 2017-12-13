@@ -40,17 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ClientBase.cs" />
-    <Compile Include="Common\IClient.cs" />
-    <Compile Include="Common\ISocketHandler.cs" />
-    <Compile Include="Common\SocketAsyncState.cs" />
-    <Compile Include="Common\SocketEventArgs.cs" />
+    <Compile Include="Wodsoft\Common\ClientBase.cs" />
+    <Compile Include="Wodsoft\Common\IClient.cs" />
+    <Compile Include="Wodsoft\Common\ISocketHandler.cs" />
+    <Compile Include="Wodsoft\Common\SocketAsyncState.cs" />
+    <Compile Include="Wodsoft\Common\SocketEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tcp\SocketAsyncResult.cs" />
-    <Compile Include="Tcp\SocketHandler.cs" />
-    <Compile Include="Tcp\TcpClient.cs" />
-    <Compile Include="Tcp\TCPListener.cs" />
-    <Compile Include="Tcp\UserToken.cs" />
+    <Compile Include="Wodsoft\Example\SocketAsyncResult.cs" />
+    <Compile Include="Wodsoft\Example\SocketHandler.cs" />
+    <Compile Include="Wodsoft\Tcp\TcpClient.cs" />
+    <Compile Include="Wodsoft\Tcp\TCPListener.cs" />
+    <Compile Include="Wodsoft\Tcp\UserToken.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Jungle\" />
+    <Folder Include="LoL\" />
+    <Folder Include="Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
