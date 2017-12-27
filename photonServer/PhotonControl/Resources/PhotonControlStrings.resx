@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="configFileNotFoundCaption" xml:space="preserve">
+    <value>Photon configuration errror</value>
+  </data>
+  <data name="configFileNotFoundMsg" xml:space="preserve">
+    <value>Failed to load photon configuration from</value>
+  </data>
+  <data name="copyToClipboardToolStripMenuItemText" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="createLoggingSetToolStripMenuItemText" xml:space="preserve">
+    <value>Create Logging Set</value>
+  </data>
+  <data name="cultureInfo" xml:space="preserve">
+    <value>default</value>
+  </data>
+  <data name="exceptionFileNotFound" xml:space="preserve">
+    <value>File does not exist</value>
+  </data>
+  <data name="failedOnCallMsg" xml:space="preserve">
+    <value>Failed on call:</value>
+  </data>
+  <data name="failedProcessQueryMsg" xml:space="preserve">
+    <value>Failed to query processes. Exception</value>
+  </data>
+  <data name="failedServiceQueryMsg" xml:space="preserve">
+    <value>Failed to query services. Exception</value>
+  </data>
+  <data name="failedToInstallDashboardMsg" xml:space="preserve">
+    <value>Failed to install dashboard service:</value>
+  </data>
+  <data name="failedToRemoveDashboardMsg" xml:space="preserve">
+    <value>Failed to remove dashboard service:</value>
+  </data>
+  <data name="failedToRestartDashboardMsg" xml:space="preserve">
+    <value>Failed to restart dashboard service:</value>
+  </data>
+  <data name="failedToStartDashboardMsg" xml:space="preserve">
+    <value>Failed to start dashboard service:</value>
+  </data>
+  <data name="failedToStopDashboardMsg" xml:space="preserve">
+    <value>Failed to stop dashboard service:</value>
+  </data>
+  <data name="failedToViewLogsMsg" xml:space="preserve">
+    <value>Failed to view logs:</value>
+  </data>
+  <data name="firewallExceptionMsg" xml:space="preserve">
+    <value>Exception while adding Photon to firewall</value>
+  </data>
+  <data name="frameworkVersionRequiredMsg" xml:space="preserve">
+    <value>Photon requires .NET Framework v{0} or later. Please download and install the appropriate version from http://download.microsoft.com</value>
+  </data>
+  <data name="gameServerConfigChangeErrorCaption" xml:space="preserve">
+    <value>Game Server Config Change Error</value>
+  </data>
+  <data name="gameServerConfigInvalidMsg" xml:space="preserve">
+    <value>Game Server config file invalid.</value>
+  </data>
+  <data name="launcherCopyAddressText" xml:space="preserve">
+    <value>Click to copy Photon server address.</value>
+  </data>
+  <data name="launcherFailedToSetIpText" xml:space="preserve">
+    <value>Failed to set local IP. Can not start Photon.</value>
+  </data>
+  <data name="launcherFailedToStartText" xml:space="preserve">
+    <value>Photon failed to start. Check log files.</value>
+  </data>
+  <data name="launcherPhotonAlreadyRunningText" xml:space="preserve">
+    <value>Photon already running.</value>
+  </data>
+  <data name="launcherPhotonNotRunningText" xml:space="preserve">
+    <value>Photon not running.</value>
+  </data>
+  <data name="launcherPhotonStartedText" xml:space="preserve">
+    <value>Photon started at:</value>
+  </data>
+  <data name="launcherPhotonStartingText" xml:space="preserve">
+    <value>Photon starting...</value>
+  </data>
+  <data name="launcherPhotonStoppedText" xml:space="preserve">
+    <value>Photon stopped.</value>
+  </data>
+  <data name="launcherPhotonStoppingText" xml:space="preserve">
+    <value>Photon stopping...</value>
+  </data>
+  <data name="launcherPhotonStopWarningMsg" xml:space="preserve">
+    <value>If you close this Window, Photon will be stopped.</value>
+  </data>
+  <data name="launcherStartButtonText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="launcherStopButtonText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="launcherUdpAddressCopiedText" xml:space="preserve">
+    <value>Copied server address to clipboard.</value>
+  </data>
+  <data name="launcherWaitButtonText" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="licenseBootstrapCCUText" xml:space="preserve">
+    <value>20 [no license]</value>
+  </data>
+  <data name="licenseBootstrapLicenseeText" xml:space="preserve">
+    <value>Bootstrap License</value>
+  </data>
+  <data name="licenseExpiredTipText" xml:space="preserve">
+    <value>Your Photon License expired on {0}. You should replace it. Contact developer@exitgames.com if you need assistance.</value>
+  </data>
+  <data name="licenseExpiredTipTitle" xml:space="preserve">
+    <value>License expired</value>
+  </data>
+  <data name="licenseNotFoundTipText" xml:space="preserve">
+    <value>No license file was found. Limiting the number of concurrent users (ccu) to 20.</value>
+  </data>
+  <data name="licenseNotFoundTipTitle" xml:space="preserve">
+    <value>No Photon License file</value>
+  </data>
+  <data name="licenseUnlimitedCCUText" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="miAutostartEnableText" xml:space="preserve">
+    <value>Autostart Photon Control</value>
+  </data>
+  <data name="miCurrentGameServerIPAutodetectText" xml:space="preserve">
+    <value>autodetect public</value>
+  </data>
+  <data name="miCurrentGameServerIpText" xml:space="preserve">
+    <value>Current IP</value>
+  </data>
+  <data name="miDashboardInstallText" xml:space="preserve">
+    <value>Install service</value>
+  </data>
+  <data name="miDashboardOpenText" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="miDashboardRemoveText" xml:space="preserve">
+    <value>Remove service</value>
+  </data>
+  <data name="miDashboardRestartText" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="miDashboardStartText" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="miDashboardStopText" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="miDashboardText" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="miExitControlText" xml:space="preserve">
+    <value>Exit Photon Control</value>
+  </data>
+  <data name="miExpiresText" xml:space="preserve">
+    <value>Expires</value>
+  </data>
+  <data name="miExploreText" xml:space="preserve">
+    <value>Explore Working Path</value>
+  </data>
+  <data name="miFloatingLicenseText" xml:space="preserve">
+    <value>Floating license</value>
+  </data>
+  <data name="miFreeLicenseText" xml:space="preserve">
+    <value>Get Your Free License</value>
+  </data>
+  <data name="miHardwareIDText" xml:space="preserve">
+    <value>Hardware ID</value>
+  </data>
+  <data name="miInstallCountersText" xml:space="preserve">
+    <value>Install Counters</value>
+  </data>
+  <data name="miInstallServiceText" xml:space="preserve">
+    <value>Install service</value>
+  </data>
+  <data name="miLatestVersionText" xml:space="preserve">
+    <value>Current version</value>
+  </data>
+  <data name="miLicenseCompanyText" xml:space="preserve">
+    <value>Licensed for</value>
+  </data>
+  <data name="miLicensedIPsText" xml:space="preserve">
+    <value>Licensed IPs</value>
+  </data>
+  <data name="miLicenseeMailText" xml:space="preserve">
+    <value>Licensee mail</value>
+  </data>
+  <data name="miLicenseMonitorAvailableIsAvailableText" xml:space="preserve">
+    <value>License Monitor: available</value>
+  </data>
+  <data name="miLicenseMonitorAvailableIsNotAvailableText" xml:space="preserve">
+    <value>License Monotir: not reached</value>
+  </data>
+  <data name="miLicenseMonitorAvailableText" xml:space="preserve">
+    <value>License Monitor: checking availability</value>
+  </data>
+  <data name="miLicenseText" xml:space="preserve">
+    <value>License info</value>
+  </data>
+  <data name="miLoadBalancingIpMenuText" xml:space="preserve">
+    <value>Game Server IP Config</value>
+  </data>
+  <data name="miMaxConnectionsText" xml:space="preserve">
+    <value>Max Connections</value>
+  </data>
+  <data name="miOpenLogsText" xml:space="preserve">
+    <value>Open Logs</value>
+  </data>
+  <data name="miPhotonTitleText" xml:space="preserve">
+    <value>Photon Control</value>
+  </data>
+  <data name="miRemoveCountersText" xml:space="preserve">
+    <value>Remove Counters</value>
+  </data>
+  <data name="miRemoveServiceText" xml:space="preserve">
+    <value>Remove Service</value>
+  </data>
+  <data name="miRestartServiceText" xml:space="preserve">
+    <value>Restart service</value>
+  </data>
+  <data name="miRunProcDumpText" xml:space="preserve">
+    <value>Run ProcDump</value>
+  </data>
+  <data name="miRunTestclientText" xml:space="preserve">
+    <value>Run Testclient</value>
+  </data>
+  <data name="miSdkVersionLatestVersionText" xml:space="preserve">
+    <value>This is the latest version of Photon.</value>
+  </data>
+  <data name="miSdkVersionNewerVersionText" xml:space="preserve">
+    <value>A newer version of Photon is available.</value>
+  </data>
+  <data name="miSdkVersionText" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="miSetAutodetectIpText" xml:space="preserve">
+    <value>Set Autodetect Public IP</value>
+  </data>
+  <data name="miSetLocalIpText" xml:space="preserve">
+    <value>Set Local IP</value>
+  </data>
+  <data name="miSetPublicIpText" xml:space="preserve">
+    <value>Set Public IP</value>
+  </data>
+  <data name="miStartAppText" xml:space="preserve">
+    <value>Start as application</value>
+  </data>
+  <data name="miStartPerfmonText" xml:space="preserve">
+    <value>Start PerfMon</value>
+  </data>
+  <data name="miStartServiceText" xml:space="preserve">
+    <value>Start service</value>
+  </data>
+  <data name="miStopAppText" xml:space="preserve">
+    <value>Stop application</value>
+  </data>
+  <data name="miStopServiceText" xml:space="preserve">
+    <value>Stop service</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="photonControlErrorCaption" xml:space="preserve">
+    <value>PhotonControl Error</value>
+  </data>
+  <data name="photonInstancesToolStripMenuItemText" xml:space="preserve">
+    <value>Photon instances:</value>
+  </data>
+  <data name="photonStartExceptionMsg" xml:space="preserve">
+    <value>Could not start Photon</value>
+  </data>
+  <data name="photonStopExceptionMsg" xml:space="preserve">
+    <value>Could not stop Photon</value>
+  </data>
+  <data name="programAlreadyRunningCaption" xml:space="preserve">
+    <value>multipleInstances</value>
+  </data>
+  <data name="programAlreadyRunningMsg" xml:space="preserve">
+    <value>Photon Control is already running!\nCheck tray bar.</value>
+  </data>
+  <data name="removeLoggingSetToolStripMenuItemText" xml:space="preserve">
+    <value>Remove Logging Set</value>
+  </data>
+  <data name="serviceStartingFailedMsg" xml:space="preserve">
+    <value>Starting'{0}'service failed. Exception:</value>
+  </data>
+  <data name="serviceStoppingFailedMsg" xml:space="preserve">
+    <value>Stopping '{0}' service failed. Exception:</value>
+  </data>
+  <data name="startLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>Start Logging</value>
+  </data>
+  <data name="stopLoggingToolStripMenuItemText" xml:space="preserve">
+    <value>Stop Logging</value>
+  </data>
+  <data name="testClientConfigErrorMsg" xml:space="preserve">
+    <value>Tester config is broken. Can't start the tester.</value>
+  </data>
+  <data name="testClientFailedMsg" xml:space="preserve">
+    <value>Failed to open testclient</value>
+  </data>
+  <data name="trayIconNoLogFoundTipText" xml:space="preserve">
+    <value>No logs of the past 12 hours found. Select them manually if needed.</value>
+  </data>
+  <data name="trayIconNoLogFoundTipTitle" xml:space="preserve">
+    <value>Failed to open logs</value>
+  </data>
+  <data name="trayIconText" xml:space="preserve">
+    <value>Photon stopped</value>
+  </data>
+  <data name="trayIconTextRunning" xml:space="preserve">
+    <value>Photon running</value>
+  </data>
+  <data name="trayIconTextStopped" xml:space="preserve">
+    <value>Photon stopped</value>
+  </data>
+  <data name="waitingForServiceText" xml:space="preserve">
+    <value>Waiting for service</value>
+  </data>
+  <data name="waitText" xml:space="preserve">
+    <value>please wait</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes333333333333</value>
+  </data>
+  <data name="failedToOpenDashboardMsg" xml:space="preserve">
+    <value>Failed to open dashboard:</value>
+  </data>
+  <data name="miCountersText" xml:space="preserve">
+    <value>PerfMon Counters</value>
+  </data>
+</root>

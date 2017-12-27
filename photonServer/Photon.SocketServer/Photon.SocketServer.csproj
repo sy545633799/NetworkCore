@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2E216D8-602A-4F0A-833C-35C8EAC7C8D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Photon.SocketServer</RootNamespace>
+    <AssemblyName>Photon.SocketServer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PhotonHostRuntime">
+      <HintPath>..\lib\PhotonHostRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationBase.cs" />
+    <Compile Include="BroadcastEventData.cs" />
+    <Compile Include="Concurrency\ActionQueue.cs" />
+    <Compile Include="Concurrency\MessageChannel.cs" />
+    <Compile Include="Concurrency\UnsubscriberCollection.cs" />
+    <Compile Include="Diagnostics\Configuration\CounterPublisherSettings.cs" />
+    <Compile Include="Diagnostics\Configuration\PhotonSettings.cs" />
+    <Compile Include="Diagnostics\CounterPublisher.cs" />
+    <Compile Include="Diagnostics\CpuUsageCounterReader.cs" />
+    <Compile Include="Diagnostics\OperationsMaxTimeCounter.cs" />
+    <Compile Include="Diagnostics\PhotonCounter.cs" />
+    <Compile Include="EncryptionMethod.cs" />
+    <Compile Include="EventData.cs" />
+    <Compile Include="IEventData.cs" />
+    <Compile Include="IManagedPeer.cs" />
+    <Compile Include="InitRequest.cs" />
+    <Compile Include="InitResponse.cs" />
+    <Compile Include="IRpcProtocol.cs" />
+    <Compile Include="NetworkProtocolType.cs" />
+    <Compile Include="Numeric\BigInteger.cs" />
+    <Compile Include="OperationRequest.cs" />
+    <Compile Include="OperationResponse.cs" />
+    <Compile Include="Operations\InitEncryptionRequest.cs" />
+    <Compile Include="Operations\InitEncryptionResponse.cs" />
+    <Compile Include="Operations\InternalOperationCodes.cs" />
+    <Compile Include="Operations\PingRequest.cs" />
+    <Compile Include="Operations\PingResponse.cs" />
+    <Compile Include="PeerBase.cs" />
+    <Compile Include="PeerConnectionStateMachine\Connected.cs" />
+    <Compile Include="PeerConnectionStateMachine\ConnectionState.cs" />
+    <Compile Include="PeerConnectionStateMachine\Disconnected.cs" />
+    <Compile Include="PeerConnectionStateMachine\Disconnecting.cs" />
+    <Compile Include="PeerConnectionStateMachine\Disposed.cs" />
+    <Compile Include="PeerConnectionStateMachine\DisposeDisconnected.cs" />
+    <Compile Include="PeerConnectionStateMachine\DisposeDisconnecting.cs" />
+    <Compile Include="PeerConnectionStateMachine\IConnectionState.cs" />
+    <Compile Include="PeerHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol.cs" />
+    <Compile Include="Reliability.cs" />
+    <Compile Include="Rpc\Protocols\CustomTypeInfo.cs" />
+    <Compile Include="Rpc\DataContract.cs" />
+    <Compile Include="Rpc\DataMemberAttribute.cs" />
+    <Compile Include="Rpc\IOperationHandler.cs" />
+    <Compile Include="Rpc\Operation.cs" />
+    <Compile Include="Rpc\OperationHandlerDisabled.cs" />
+    <Compile Include="Rpc\Peer.cs" />
+    <Compile Include="Rpc\Protocols\Amf3\Amf3ClassDefinition.cs" />
+    <Compile Include="Rpc\Protocols\Amf3\Amf3Protocol.cs" />
+    <Compile Include="Rpc\Protocols\Amf3\Amf3Reader.cs" />
+    <Compile Include="Rpc\Protocols\Amf3\Amf3TypeMarker.cs" />
+    <Compile Include="Rpc\Protocols\Amf3\Amf3Writer.cs" />
+    <Compile Include="Rpc\Protocols\CustomTypeCache.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryV17\GpBinaryByteReaderV17.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryV17\GpBinaryByteWriterV17.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryV17\GpBinaryProtocolV17.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryV17\GpTypeV17.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteProtocol.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteProtocolV16.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteProtocolV16Flash.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteReader.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteTypeConverter.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpBinaryByteWriter.cs" />
+    <Compile Include="Rpc\Protocols\GpBinaryByte\GpType.cs" />
+    <Compile Include="Rpc\Protocols\GpBinary\BigEndianReader.cs" />
+    <Compile Include="Rpc\Protocols\IRtsMessageHeaderConverter.cs" />
+    <Compile Include="Rpc\Protocols\Json\JsonParameterConverter.cs" />
+    <Compile Include="Rpc\Protocols\Json\JsonProtocol.cs" />
+    <Compile Include="Rpc\Protocols\Json\JsonSerializer.cs" />
+    <Compile Include="Rpc\Protocols\ProtocolType.cs" />
+    <Compile Include="Rpc\Protocols\ReusableMemoryStream.cs" />
+    <Compile Include="Rpc\Protocols\RtsInitMessage.cs" />
+    <Compile Include="Rpc\Protocols\RtsInitResponseMessage.cs" />
+    <Compile Include="Rpc\Protocols\RtsMagicByte.cs" />
+    <Compile Include="Rpc\Protocols\RtsMessageHeader.cs" />
+    <Compile Include="Rpc\Protocols\RtsMessageHeaderConverterAmf3V2.cs" />
+    <Compile Include="Rpc\Protocols\RtsMessageHeaderConverterBinaryV2.cs" />
+    <Compile Include="Rpc\Protocols\RtsMessageType.cs" />
+    <Compile Include="Rpc\Reflection\DynamicMethodCreator.cs" />
+    <Compile Include="Rpc\Reflection\ObjectDataMemberMapper.cs" />
+    <Compile Include="Rpc\Reflection\ObjectMemberInfo.cs" />
+    <Compile Include="Rpc\Reflection\ObjectMemberInfoCache.cs" />
+    <Compile Include="Rpc\Reflection\OperationAttribute.cs" />
+    <Compile Include="Rpc\Reflection\OperationDispatcher.cs" />
+    <Compile Include="Rpc\Reflection\OperationMethodInfoCache.cs" />
+    <Compile Include="Rpc\ValueTypes\RawCustomArray.cs" />
+    <Compile Include="Rpc\ValueTypes\RawCustomValue.cs" />
+    <Compile Include="Security\DiffieHellmanKeyExchange.cs" />
+    <Compile Include="Security\ICryptoProvider.cs" />
+    <Compile Include="Security\OakleyGroups.cs" />
+    <Compile Include="Security\RijndaelCryptoProvider.cs" />
+    <Compile Include="SendParameters.cs" />
+    <Compile Include="SendResult.cs" />
+    <Compile Include="SerializedEventData.cs" />
+    <Compile Include="ServerToServer\ByteBuffer.cs" />
+    <Compile Include="ServerToServer\EventDataEventArgs.cs" />
+    <Compile Include="ServerToServer\InitializeEncryptionEventArgs.cs" />
+    <Compile Include="ServerToServer\OperationResponseEventArgs.cs" />
+    <Compile Include="ServerToServer\PingResponse.cs" />
+    <Compile Include="ServerToServer\PingResponseEventArgs.cs" />
+    <Compile Include="ServerToServer\ServerPeerBase.cs" />
+    <Compile Include="ServerToServer\SocketErrorEventArgs.cs" />
+    <Compile Include="ServerToServer\TcpBinaryReader.cs" />
+    <Compile Include="ServerToServer\TcpClient.cs" />
+    <Compile Include="ServerToServer\TcpClientBase.cs" />
+    <Compile Include="ServerToServer\TemporaryServerPeer.cs" />
+    <Compile Include="ServerToServer\Versions.cs" />
+    <Compile Include="Web\AsyncHttpRequest.cs" />
+    <Compile Include="Web\AsyncResult.cs" />
+    <Compile Include="Web\HttpApplicationHandler.cs" />
+    <Compile Include="Web\HttpClientBase.cs" />
+    <Compile Include="Web\HttpSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>HttpSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web\InvocationCache.cs" />
+    <Compile Include="Web\ITcpListener.cs" />
+    <Compile Include="Web\PeerCache.cs" />
+    <Compile Include="Web\PhotonHttpPeer.cs" />
+    <Compile Include="Web\RpcHttpHelper.cs" />
+    <Compile Include="Web\TcpPeer.cs" />
+    <Compile Include="Web\TcpReader.cs" />
+    <Compile Include="Web\Versions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExitGames.Logging.Log4Net\ExitGames.Logging.Log4Net.csproj">
+      <Project>{092cc53f-6666-43f1-875f-d45035693c16}</Project>
+      <Name>ExitGames.Logging.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExitGamesLibs\ExitGamesLibs.csproj">
+      <Project>{771cf3c7-5268-469d-99c5-0d1454b8cca7}</Project>
+      <Name>ExitGamesLibs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotonHostRuntimeInterfaces\PhotonHostRuntimeInterfaces.csproj">
+      <Project>{4a770663-2d2d-4f7b-85fd-9bc52edd57b9}</Project>
+      <Name>PhotonHostRuntimeInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Web\HttpSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>HttpSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

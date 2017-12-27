@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PhotonControl" GeneratedClassName="PhotonControlSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PhotonWorkingDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CounterServiceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PhontonDashboardService</Value>
+    </Setting>
+    <Setting Name="LogManCreateOptions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-si 01:00 -v mmddhhmm -cf "..\bin_tools\perfmon\logman.config.txt"</Value>
+    </Setting>
+    <Setting Name="LogManSetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">photon_perf_log</Value>
+    </Setting>
+    <Setting Name="Compact" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TestClientArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lite,Master</Value>
+    </Setting>
+    <Setting Name="TestClientPaths" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\bin_tools\stardust\StarDust.cmd,..\bin_tools\loadbalancing.client\Photon.LoadBalancing.TestClient.exe</Value>
+    </Setting>
+    <Setting Name="Instances" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default,LoadBalancing (MyCloud)</Value>
+    </Setting>
+    <Setting Name="GameServerConfigPaths" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\Loadbalancing\GameServer1\bin\Photon.LoadBalancing.dll.config;..\Loadbalancing\GameServer2\bin\Photon.LoadBalancing.dll.config</Value>
+    </Setting>
+    <Setting Name="ReplaceFirewallRules" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseCmdFileToOpenLogs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
