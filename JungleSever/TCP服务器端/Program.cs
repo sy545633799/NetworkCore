@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,10 +59,9 @@ namespace TCP服务器端
                     clientSocket.Close();
                     return;
                 }
-                msg.AddCount(count);
                 //string msgStr = Encoding.UTF8.GetString(dataBuffer, 0, count);
                 //Console.WriteLine("从客户端接收到数据："+ msgStr);
-                msg.ReadMessage();
+                msg.ReadMessage(count);
                 //clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);
                 clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallBack, clientSocket);
             }

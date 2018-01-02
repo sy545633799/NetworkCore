@@ -39,10 +39,6 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PhotonUnity3D, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Photon3Unity3D.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,6 +81,13 @@
       <Project>{8C1F7F02-10EA-436F-9679-D4DB5B666BDB}</Project>
       <Name>Photon.MmoDemo.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Photon3DotNet\Photon3DotNet.csproj">
+      <Project>{5e9c23d2-6c20-430d-9cee-663b7551bf57}</Project>
+      <Name>Photon3DotNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

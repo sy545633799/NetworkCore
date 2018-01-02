@@ -5,7 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{3F63A5E7-6C26-29D0-EFD5-A506C3C62E8A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -46,43 +47,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\DemoSettings.cs" />
-     <Compile Include="Assets\Scripts\ItemBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Radar.cs" />
-     <Compile Include="Assets\Scripts\RunBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Utilities\FramesPerSecond.cs" />
-     <Compile Include="Assets\Scripts\Utilities\OnStartDelete.cs" />
-     <Compile Include="Assets\Scripts\Utilities\RoundTripTime.cs" />
- <Reference Include="UnityEngine.UI">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.HoloLens">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.VR">
- <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
- <Reference Include="Photon.MmoDemo.Client.Unity3D">
- <HintPath>E:/Project/DotNet/photonServer/Photon.MmoDemo.Client.UnityGrid/Assets/Photon/Photon.MmoDemo.Client.Unity3D.dll</HintPath>
- </Reference>
- <Reference Include="Photon.MmoDemo.Common">
- <HintPath>E:/Project/DotNet/photonServer/Photon.MmoDemo.Client.UnityGrid/Assets/Photon/Photon.MmoDemo.Common.dll</HintPath>
- </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>E:/Project/DotNet/photonServer/Photon.MmoDemo.Client.UnityGrid/Assets/Photon/Photon3Unity3D.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Scripts\DemoSettings.cs" />
+    <Compile Include="Assets\Scripts\ItemBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Radar.cs" />
+    <Compile Include="Assets\Scripts\RunBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Utilities\FramesPerSecond.cs" />
+    <Compile Include="Assets\Scripts\Utilities\OnStartDelete.cs" />
+    <Compile Include="Assets\Scripts\Utilities\RoundTripTime.cs" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VR">
+      <HintPath>D:/Program Files/Unity5.6.2/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon.MmoDemo.Common">
+      <HintPath>..\Photon.MmoDemo.Common\bin\Debug\Photon.MmoDemo.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Photon.MmoDemo.Client.Unity3D\Photon.MmoDemo.Client.Unity3D.csproj">
+      <Project>{170ce1bc-2d9c-4344-8e9d-07baa2e3fb94}</Project>
+      <Name>Photon.MmoDemo.Client.Unity3D</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -92,5 +96,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

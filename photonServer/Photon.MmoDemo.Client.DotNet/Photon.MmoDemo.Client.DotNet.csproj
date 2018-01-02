@@ -39,10 +39,6 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PhotonDotNet, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\Photon3DotNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +57,10 @@
     <ProjectReference Include="..\Photon.MmoDemo.Common\Photon.MmoDemo.Common.csproj">
       <Project>{8C1F7F02-10EA-436F-9679-D4DB5B666BDB}</Project>
       <Name>Photon.MmoDemo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Photon3DotNet\Photon3DotNet.csproj">
+      <Project>{5e9c23d2-6c20-430d-9cee-663b7551bf57}</Project>
+      <Name>Photon3DotNet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
