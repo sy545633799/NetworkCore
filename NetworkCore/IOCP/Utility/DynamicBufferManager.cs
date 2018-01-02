@@ -1,14 +1,7 @@
-using NetworkCore.IOCP.Server;
 using System;
-using System.Text;
-using System.Net.Sockets;
-using System.Collections.Generic;
-using System.IO;
-using NetworkCore.IOCP.Common;
 using System.Linq;
-using NetworkCore.IOCP.Events;
 
-namespace NetworkCore.IOCP.Utility
+namespace NetworkCore.IOCP
 {
     public class DynamicBufferManager
     {
@@ -17,16 +10,16 @@ namespace NetworkCore.IOCP.Utility
         public int dataLenth { get; private set; }
         private MessageEventArgs readArgs;
 
-        public byte[] writeCache { get; private set; }
+        //public byte[] writeCache { get; private set; }
 
         public DynamicBufferManager()
         {
             readCache = new byte[1024 * 1024];
-            writeCache = new byte[1024 * 1024];
+            //writeCache = new byte[1024 * 1024];
             readArgs = new MessageEventArgs();
         }
 
-        public void ProcessReceive(byte[] buffer, int count, EventHandler<MessageEventArgs> callback, BaseClient userToken) //接收异步事件返回的数据，用于对数据进行缓存和分包
+        public void ProcessRead(byte[] buffer, int count, EventHandler<MessageEventArgs> callback, BaseClient userToken) //接收异步事件返回的数据，用于对数据进行缓存和分包
         {
             if (dataLenth + count > readCache.Length)
             {
@@ -51,15 +44,13 @@ namespace NetworkCore.IOCP.Utility
             }
         }
 
-        public static byte[] GetBytes(string data)
+        public byte[] ProcessWrite(byte[] dataBytes)
         {
-            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
             int dataLength = dataBytes.Length;
             byte[] lengthBytes = BitConverter.GetBytes(dataLength);
             byte[] newBytes = lengthBytes.Concat(dataBytes).ToArray();
             return newBytes;
         }
-
 
     }
 }

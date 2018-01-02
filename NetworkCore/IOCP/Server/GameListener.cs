@@ -1,15 +1,9 @@
-using NetworkCore.IOCP.Common;
-using NetworkCore.IOCP.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
-namespace NetworkCore.IOCP.Server
+namespace NetworkCore.IOCP
 {
     public class GameListener
     {
@@ -31,6 +25,10 @@ namespace NetworkCore.IOCP.Server
         /// </summary>
         public event EventHandler<MessageEventArgs> ReceiveCompleted;
         /// <summary>
+        /// 发送完成时引发事件。
+        /// </summary>
+        public event EventHandler<MessageEventArgs> SendCompleted;
+        /// <summary>
         /// 接受客户完成时引发事件。
         /// </summary>
         public event EventHandler<SocketAsyncEventArgs> AcceptCompleted;
@@ -39,15 +37,11 @@ namespace NetworkCore.IOCP.Server
         /// </summary>
         public event EventHandler<SocketAsyncEventArgs> DisconnectCompleted;
         /// <summary>
-        /// 发送完成时引发事件。
-        /// </summary>
-        public event EventHandler<SocketAsyncEventArgs> SendCompleted;
-        /// <summary>
         /// 发生错误时引发的事件
         /// </summary>
         public event EventHandler<Exception> OnError;
 
-        public GameListener(int numConnections)
+        public GameListener(int numConnections, int asyncBufferSize)
         {
             m_numConnections = numConnections;
 
@@ -56,7 +50,7 @@ namespace NetworkCore.IOCP.Server
 
             for (int i = 0; i < m_numConnections; i++) //按照连接数建立读写对象
             {
-                UserToken userToken = new UserToken(1024 * 1024);
+                UserToken userToken = new UserToken(asyncBufferSize);
                 m_UserTokenPool.Push(userToken);
             }
 
@@ -115,7 +109,7 @@ namespace NetworkCore.IOCP.Server
             userToken.DisconnectCompleted += client_DisconnectCompleted;
             userToken.OnError += client_OnError;
             //开始接收数据
-            userToken.Start();
+            userToken.StartReceive(null);
             //把当前异步事件释放，等待下次客户端连接
             StartAccept(acceptEventArgs);
         }
@@ -143,7 +137,7 @@ namespace NetworkCore.IOCP.Server
         }
 
         //向客户端发送数据完成
-        private void client_SendCompleted(object sender, SocketAsyncEventArgs e)
+        private void client_SendCompleted(object sender, MessageEventArgs e)
         {
             SendCompleted?.Invoke(this, e);
         }

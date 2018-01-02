@@ -53,6 +53,10 @@
       <Project>{8fab9264-a9cf-4ce5-b3f2-4e3942b4d376}</Project>
       <Name>NetworkCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{f0c5ea50-cd20-45f1-9bba-bbe7c9408b23}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

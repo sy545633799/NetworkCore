@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NetworkCore.IOCP.Server
+namespace NetworkCore.IOCP
 {
     public class UserTokenPool
     {

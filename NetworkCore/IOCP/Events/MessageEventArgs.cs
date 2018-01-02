@@ -1,12 +1,6 @@
-using NetworkCore.IOCP.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NetworkCore.IOCP.Events
+namespace NetworkCore.IOCP
 {
     public class MessageEventArgs: EventArgs
     {

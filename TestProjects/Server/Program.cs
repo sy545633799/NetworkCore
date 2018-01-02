@@ -5,8 +5,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using NetworkCore.IOCP.Server;
-using NetworkCore.IOCP.Events;
 
 namespace Server
 {
@@ -14,28 +12,10 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            GameListener listener = new GameListener(10);
-            listener.AcceptCompleted += AcceptCompleted;
-            listener.ReceiveCompleted += ReceiveCompleted;
-            listener.Start(6650);
-            Console.ReadKey();
-        }
+            Server.Test.IOPCTest.StartListener();
 
-        private static void ReceiveCompleted(object sender, MessageEventArgs message)
-        {
-            Console.WriteLine("receive:" + Encoding.UTF8.GetString(message.Data, 0, message.DataLenth));
         }
-
-        private static void AcceptCompleted(object sender, SocketAsyncEventArgs e)
-        {
-            Console.WriteLine("客户端连接");
-        }
-
-        public static void TcpTest()
-        {
-            
-            
-        }
+      
 
         public void EFCoreTest()
         {

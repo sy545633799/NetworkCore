@@ -1,9 +1,7 @@
-using NetworkCore.IOCP.Events;
-using NetworkCore.IOCP.Utility;
 using System;
 using System.Net.Sockets;
 
-namespace NetworkCore.IOCP.Common
+namespace NetworkCore.IOCP
 {
     public class BaseClient
     {
@@ -12,6 +10,11 @@ namespace NetworkCore.IOCP.Common
         public DateTime ActiveDateTime { get; protected set; }
         public SocketAsyncEventArgs SendEventArgs { protected set; get; }
         public Socket ClientSocket { get; set; }
+        /// <summary>
+        /// 获取是否已连接。
+        /// </summary>
+        public bool IsConnected { get { return ClientSocket != null && ClientSocket.Connected; } }
+
         private int bufferSize;
 
         #region 事件
@@ -27,7 +30,7 @@ namespace NetworkCore.IOCP.Common
         ///// <summary>
         ///// 发送完成时引发事件。
         ///// </summary>
-        public event EventHandler<SocketAsyncEventArgs> SendCompleted;
+        public event EventHandler<MessageEventArgs> SendCompleted;
         /// <summary>
         /// 发生错误时引发的事件
         /// </summary>
@@ -61,13 +64,7 @@ namespace NetworkCore.IOCP.Common
             }
         }
 
-        public void Start()
-        {
-            ConnectDateTime = DateTime.Now;
-            StartReceive(null);
-        }
-
-        private void StartReceive(SocketAsyncEventArgs receiveEventArgs)
+        public void StartReceive(SocketAsyncEventArgs receiveEventArgs)
         {
             if (receiveEventArgs == null)
             {
@@ -102,15 +99,15 @@ namespace NetworkCore.IOCP.Common
             ActiveDateTime = DateTime.Now;
             if (receiveEventArgs.BytesTransferred > 0 && receiveEventArgs.SocketError == SocketError.Success)
             {
-                Handler.ProcessReceive(receiveEventArgs.Buffer, receiveEventArgs.BytesTransferred, ReceiveCompleted, this);
+                Handler.ProcessRead(receiveEventArgs.Buffer, receiveEventArgs.BytesTransferred, ReceiveCompleted, this);
                 StartReceive(receiveEventArgs);
             }
             else
             {
-                //if (receiveEventArgs.SocketError != SocketError.Success)
-                //    CloseClientSocket(CloseClientSocket.SocketError.ToString());
-                //else
-                //    CloseClientSocket("客户端主动断开连接");
+                if (receiveEventArgs.SocketError != SocketError.Success)
+                    Console.WriteLine("客户端异常断开");
+                else
+                    Console.WriteLine("客户端主动断开连接");
                 CloseClientSocket(receiveEventArgs);
             }
         }
@@ -118,9 +115,11 @@ namespace NetworkCore.IOCP.Common
         public void Send(byte[] buffer)
         {
             if (ClientSocket == null) return;
-            
+            byte[] message = Handler.ProcessWrite(buffer);
+            ClientSocket.Send(message);
         }
 
+        #region 异步发送TODO
         private void StartSend(SocketAsyncEventArgs e)
         {
             if (e == null)
@@ -143,22 +142,32 @@ namespace NetworkCore.IOCP.Common
                 CloseClientSocket(e);
             }
         }
+        #endregion
 
-        public void CloseClientSocket(SocketAsyncEventArgs e)
+        public void Close()
+        {
+            CloseClientSocket(new SocketAsyncEventArgs() { SocketError = SocketError.Success });
+        }
+
+        protected void CloseClientSocket(SocketAsyncEventArgs e)
         {
             if (ClientSocket == null)
                 return;
             try
             {
-                ClientSocket.Shutdown(SocketShutdown.Both);
+                if (IsConnected)
+                {
+                    ClientSocket.Shutdown(SocketShutdown.Both);
+                    DisconnectCompleted?.Invoke(this, e);
+                    ClientSocket.Close();
+                    if (ClientSocket != null) ClientSocket.Dispose();
+                    ClientSocket = null; //释放引用，并清理缓存，包括释放协议对象等资源
+                }
             }
             catch (Exception E)
             {
                 Console.WriteLine(E.Message);
             }
-            DisconnectCompleted?.Invoke(this, e);
-            ClientSocket.Close();
-            ClientSocket = null; //释放引用，并清理缓存，包括释放协议对象等资源
         }
     }
 }

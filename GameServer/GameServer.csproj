@@ -6,9 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\NetworkCore\NetworkCore.csproj" />
-    <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\MySql\MySql.csproj" />
+    <ProjectReference Include="..\NetworkCore\NetworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DAO\" />
   </ItemGroup>
 
 </Project>
