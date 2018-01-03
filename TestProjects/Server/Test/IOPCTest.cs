@@ -26,20 +26,13 @@ namespace Server.Test
 
         private static void ReceiveCompleted(object sender, MessageEventArgs message)
         {
-            Person person = BinaryUtil.ByteToObject<Person>(message.Data);
-            Console.WriteLine("receive:" + person.ToString());
+            Console.WriteLine("receive:" + BinaryUtil.ByteToInt(message.Data).ToString());
         }
 
         private static void AcceptCompleted(object sender, SocketAsyncEventArgs e)
         {
             Console.WriteLine("客户端连接");
             UserToken userToken = e.UserToken as UserToken;
-            //while (true)
-            //{
-            //    string str = Console.ReadLine();
-            //    userToken.Send(Encoding.UTF8.GetBytes(str));
-            //}
-
         }
     }
 }
