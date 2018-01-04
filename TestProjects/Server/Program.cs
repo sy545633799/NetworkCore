@@ -1,11 +1,8 @@
-using MySql.Data;
-using MySql.Models;
 using System;
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
+using System.Net.WebSockets;
+using System.Threading;
 
 namespace Server
 {
@@ -14,95 +11,68 @@ namespace Server
         static void Main(string[] args)
         {
             Server.Test.IOPCTest.StartListener();
-             
+            //IHttpHandler
+            WebSocketServer();
         }
-      
 
-        public void EFCoreTest()
+        private static void HttpServer()
         {
-            using (var context = new DataContext())
+            HttpListener listener = new HttpListener();
+            listener.Prefixes.Add("http://127.0.0.1:8080/");
+            listener.Start();
+            HttpListenerContext context = listener.GetContext();
+            HttpListenerRequest request = context.Request;
+            HttpListenerResponse response = context.Response;
+            string responseString = string.Format("<HTML><BODY> {0}</BODY></HTML>", DateTime.Now);
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+            //∂‘øÕªß∂À ‰≥ˆœ‡”¶–≈œ¢.
+            response.ContentLength64 = buffer.Length;
+            System.IO.Stream output = response.OutputStream;
+            output.Write(buffer, 0, buffer.Length);
+            //πÿ±’ ‰≥ˆ¡˜£¨ Õ∑≈œ‡”¶◊ ‘¥
+            output.Close();
+
+            listener.Stop(); //πÿ±’HttpListener
+        }
+
+        static async void WebSocketServer()
+        {
+            HttpListener listener = new HttpListener();
+            listener.Prefixes.Add("http://localhost:8080/");
+            listener.Start();
+
+            while (true)
             {
-                context.Database.EnsureCreated();
+                
+                HttpListenerContext context = await listener.GetContextAsync();
+                Console.WriteLine("connected");
 
-                //context.Add(new User { Name = "ÊÑ§ÊÄíÁöÑTryCatch" });
-                //User user = new User { Name = "Â∞èÈ∏üÁöÑÊÑ§ÊÄí" };
-
-                //context.Add(user);
-                //context.Remove<User>(user);
-                //User user = new User { Name = "Êñ∞ÁöÑÂ∞èÈ∏ü5"};
-
-                User usr = new User { Name = "test01", Age = 18 };
-                context.Add(usr);
-                context.SaveChanges();
-
-                //User user = context.Find<User>(6);
-                //Console.WriteLine(user.Name);
-                //Console.ReadKey();
-
+                HttpListenerWebSocketContext websocketContext = await context.AcceptWebSocketAsync(null);
+                ProcessClient(websocketContext.WebSocket);
             }
         }
 
-        public static void SocketExtsTest()
+        static async void ProcessClient(WebSocket websocket)
         {
-            //var cmd = "add 1 2 4" + Environment.NewLine;
-            //Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
-            //Task.Run(async delegate { await SocketExts.SendAsync(cmd); });
-            //Task.Run(async delegate {
-            //    await SocketExts.SendAsync("ECHO this is a test"
-            //     + Environment.NewLine);
-            //});
-            //Task.WaitAll(Task.Delay(2000));
-        }
-    }
+            var data = new byte[1500];
+            var buffer = new ArraySegment<byte>(data);
 
-    public static class SocketExts
-    {
-        public async static Task<string> SendAsync(string msg, string ip = "127.0.0.1", int port = 2012)
-        {
-            using (var client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            while (true)
             {
-                var remoteEP = new IPEndPoint(IPAddress.Parse(ip), port);
-                await Task.Factory.FromAsync(client.BeginConnect,
-                                                  client.EndConnect, remoteEP, null);
+                WebSocketReceiveResult result = await websocket.ReceiveAsync(buffer, CancellationToken.None);
 
-                byte[] byteData = Encoding.ASCII.GetBytes(msg);
-                var result = client.BeginSend(byteData, 0, byteData.Length, 0, _ => { }, client);
-                await Task.Factory.FromAsync(result, (r) => client.EndSend(r));
-
-                StateObject state = new StateObject();
-                state.workSocket = client;
-                var received = client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, _ => { }, state);
-                var response = await Task<string>.Factory.FromAsync(received, ar =>
+                if (result.CloseStatus != null)
                 {
-                    ReceiveCallback(ar);
-                    return ((StateObject)ar.AsyncState).sb.ToString();
-                });
+                    Console.WriteLine("socket closed");
+                    websocket.Abort();
+                    return;
+                }
 
+                Console.WriteLine(">>> " + Encoding.UTF8.GetString(data, 0, result.Count));
+                await websocket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
 
-                Console.WriteLine("=======Response received : {0}=====", response);
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
-                return response;
             }
         }
-        private static void ReceiveCallback(IAsyncResult ar)
-        {
-            StateObject state = (StateObject)ar.AsyncState;
-            Socket client = state.workSocket;
-            int bytesRead = client.EndReceive(ar);
-            if (bytesRead > 0)
-            {
-                state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-                client.BeginReceive(state.buffer, 0, bytesRead, SocketFlags.None, new AsyncCallback(ReceiveCallback), client);
-            }
-        }
-    }
 
-    public class StateObject
-    {
-        public Socket workSocket = null;
-        public const int BufferSize = 1024;
-        public byte[] buffer = new byte[BufferSize];
-        public StringBuilder sb = new StringBuilder();
     }
 }

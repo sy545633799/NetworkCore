@@ -8,6 +8,7 @@ namespace GameServer
     {
         static void Main(string[] args)
         {
+            
             GameListener listener = new GameListener(10, 1024 * 1024);
             listener.AcceptCompleted += AcceptCompleted;
             listener.ReceiveCompleted += ReceiveCompleted;

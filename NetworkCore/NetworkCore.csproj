@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,8 +52,9 @@
     <Compile Include="IOCP\Server\GameListener.cs" />
     <Compile Include="IOCP\Server\UserToken.cs" />
     <Compile Include="IOCP\Events\MessageEventArgs.cs" />
-    <Compile Include="Model\Message.cs" />
     <Compile Include="Utility\BinaryUtil.cs" />
+    <Compile Include="Websocket\Server\WebsocketListener.cs" />
+    <Compile Include="Websocket\WebSocketTest.cs" />
     <Compile Include="Wodsoft\Common\ClientBase.cs" />
     <Compile Include="Wodsoft\Common\IClient.cs" />
     <Compile Include="Wodsoft\Common\ISocketHandler.cs" />
