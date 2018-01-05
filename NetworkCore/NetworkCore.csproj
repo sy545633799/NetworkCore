@@ -47,8 +47,9 @@
     <Compile Include="IOCP\Client\GameClient.cs" />
     <Compile Include="IOCP\Common\BaseClient.cs" />
     <Compile Include="IOCP\Common\IClient.cs" />
+    <Compile Include="IOCP\Sock_Wrapper.cs" />
     <Compile Include="IOCP\Utility\DynamicBufferManager.cs" />
-    <Compile Include="IOCP\Server\UserTokenPool.cs" />
+    <Compile Include="Utility\ClientPool.cs" />
     <Compile Include="IOCP\Server\GameListener.cs" />
     <Compile Include="IOCP\Server\UserToken.cs" />
     <Compile Include="IOCP\Events\MessageEventArgs.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Wodsoft\Tcp\TCPListener.cs" />
     <Compile Include="Wodsoft\Tcp\UserToken.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Websocket\Client\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

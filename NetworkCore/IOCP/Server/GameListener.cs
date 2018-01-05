@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using NetworkCore.Utility;
 
 namespace NetworkCore.IOCP
 {
@@ -11,11 +12,9 @@ namespace NetworkCore.IOCP
 
         private int m_numConnections; //最大支持连接个数
         private Semaphore m_maxNumberAcceptedClients; //限制访问接收连接的线程数，用来控制最大并发数
+        private ClientPool<UserToken> m_UserTokenPool;
 
-        private int m_socketTimeOutMS; //Socket最大超时时间，单位为MS
-        public int SocketTimeOutMS { get { return m_socketTimeOutMS; } set { m_socketTimeOutMS = value; } }
-
-        private UserTokenPool m_UserTokenPool;
+        public int SocketTimeOutMS { get; set; }
 
         //心跳与断线重连
         //private DaemonThread m_daemonThread;
@@ -45,7 +44,7 @@ namespace NetworkCore.IOCP
         {
             m_numConnections = numConnections;
 
-            m_UserTokenPool = new UserTokenPool(numConnections);
+            m_UserTokenPool = new ClientPool<UserToken>(numConnections);
             m_maxNumberAcceptedClients = new Semaphore(numConnections, numConnections);
 
             for (int i = 0; i < m_numConnections; i++) //按照连接数建立读写对象
@@ -53,7 +52,6 @@ namespace NetworkCore.IOCP
                 UserToken userToken = new UserToken(asyncBufferSize);
                 m_UserTokenPool.Push(userToken);
             }
-
         }
 
         public void Start(int port)
@@ -63,7 +61,6 @@ namespace NetworkCore.IOCP
             listenSocket.Bind(iPEndPoint);
             listenSocket.Listen(m_numConnections);
             StartAccept(null);
-            //m_daemonThread = new DaemonThread(this);
         }
 
         private void StartAccept(SocketAsyncEventArgs acceptEventArgs)

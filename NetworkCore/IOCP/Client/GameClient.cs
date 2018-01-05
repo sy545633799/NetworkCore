@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-
+using System.Threading;
 
 namespace NetworkCore.IOCP
 {
@@ -12,6 +12,12 @@ namespace NetworkCore.IOCP
         ///// 连接完成时引发事件。
         ///// </summary>
         public event EventHandler<SocketAsyncEventArgs> connectCompleted;
+        /// <summary>
+        /// 连接超时处理
+        /// </summary>
+        public int TimeOut { get; set; }
+        private ManualResetEvent TimeoutObject = new ManualResetEvent(false);
+        private Exception socketexception;
 
         public GameClient(int size)
             : base(size)
@@ -60,9 +66,15 @@ namespace NetworkCore.IOCP
 
         private void ProcessConnect(SocketAsyncEventArgs e)
         {
-            connectCompleted?.Invoke(this, e);
-            StartReceive(null);
+            try
+            {
+                connectCompleted?.Invoke(this, e);
+                StartReceive(null);
+            }
+            catch (Exception E)
+            {
+                socketexception = E;
+            }
         }
-
     }
 }

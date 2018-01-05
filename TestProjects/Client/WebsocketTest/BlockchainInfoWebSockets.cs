@@ -16,7 +16,7 @@ namespace BlockchainInfoWebSockets
         private const bool verbose = true;
         private static readonly TimeSpan delay = TimeSpan.FromMilliseconds(30000);
 
-        static void Main(string[] args)
+        static void Start()
         {
             Thread.Sleep(1000);
             Connect("ws://ws.blockchain.info:8335/inv").Wait();

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NetworkCore.IOCP
+namespace NetworkCore.Utility
 {
-    public class UserTokenPool
+    public class ClientPool<T>
     {
-        private Stack<UserToken> m_pool;
+        private Stack<T> m_pool;
 
-        public UserTokenPool(int capacity)
+        public ClientPool(int capacity)
         {
-            m_pool = new Stack<UserToken>(capacity);
+            m_pool = new Stack<T>(capacity);
         }
 
-        public void Push(UserToken item)
+        public void Push(T item)
         {
             if (item == null)
             {
@@ -26,7 +26,7 @@ namespace NetworkCore.IOCP
             }
         }
 
-        public UserToken Pop()
+        public T Pop()
         {
             lock (m_pool)
             {

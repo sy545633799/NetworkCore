@@ -97,17 +97,22 @@ namespace NetworkCore.IOCP
             if (ClientSocket == null)
                 return;
             ActiveDateTime = DateTime.Now;
-            if (receiveEventArgs.BytesTransferred > 0 && receiveEventArgs.SocketError == SocketError.Success)
+            if (receiveEventArgs.SocketError == SocketError.Success)
             {
-                Handler.ProcessRead(receiveEventArgs.Buffer, receiveEventArgs.BytesTransferred, ReceiveCompleted, this);
-                StartReceive(receiveEventArgs);
+                if (receiveEventArgs.BytesTransferred > 0)
+                {
+                    Handler.ProcessRead(receiveEventArgs.Buffer, receiveEventArgs.BytesTransferred, ReceiveCompleted, this);
+                    StartReceive(receiveEventArgs);
+                }
+                else
+                {
+                    Console.WriteLine("客户端主动断开连接");
+                    CloseClientSocket(receiveEventArgs);
+                }
             }
             else
             {
-                if (receiveEventArgs.SocketError != SocketError.Success)
-                    Console.WriteLine("客户端异常断开");
-                else
-                    Console.WriteLine("客户端主动断开连接");
+                Console.WriteLine("客户端异常断开");
                 CloseClientSocket(receiveEventArgs);
             }
         }

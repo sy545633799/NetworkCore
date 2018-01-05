@@ -11,8 +11,9 @@ namespace Server
         static void Main(string[] args)
         {
             Server.Test.IOPCTest.StartListener();
+
             //IHttpHandler
-            WebSocketServer();
+            //WebSocketServer();
         }
 
         private static void HttpServer()

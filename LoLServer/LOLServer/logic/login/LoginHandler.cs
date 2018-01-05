@@ -49,19 +49,19 @@ namespace LOLServer.logic.login
         public void reg(UserToken token, AccountInfoDTO value)
         {
             ExecutorPool.Instance.execute(
-                    delegate()
+                    delegate ()
                     {
                         int result = accountBiz.create(token, value.account, value.password);
-                        write(token, LoginProtocol.REG_SRES, result);   
+                        write(token, LoginProtocol.REG_SRES, result);
                     }
                     );
-	
+
         }
 
 
         public void ClientConnect(NetFrame.UserToken token)
         {
-            	
+            
         }
 
         public override byte GetType()

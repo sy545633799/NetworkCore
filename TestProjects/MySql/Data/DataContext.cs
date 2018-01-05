@@ -15,5 +15,6 @@ namespace MySql.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseMySQL(@"Server=localhost;database=ef;uid=root;pwd=3.1415926;SslMode=None");
+        
     }
 }
