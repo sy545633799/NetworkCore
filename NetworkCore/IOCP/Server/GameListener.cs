@@ -38,7 +38,7 @@ namespace NetworkCore.IOCP
         /// <summary>
         /// 发生错误时引发的事件
         /// </summary>
-        public event EventHandler<Exception> OnError;
+        public event EventHandler<Exception> OnClientError;
 
         public GameListener(int numConnections, int asyncBufferSize)
         {
@@ -60,7 +60,16 @@ namespace NetworkCore.IOCP
             listenSocket = new Socket(iPEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             listenSocket.Bind(iPEndPoint);
             listenSocket.Listen(m_numConnections);
-            StartAccept(null);
+
+            try
+            {
+                StartAccept(null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+           
         }
 
         private void StartAccept(SocketAsyncEventArgs acceptEventArgs)
@@ -79,6 +88,7 @@ namespace NetworkCore.IOCP
             //如果没有挂起
             if (!willRaiseEvent)
                 ProcessAccept(acceptEventArgs);
+            
         }
 
         private void AcceptEventArg_Completed(object sender, SocketAsyncEventArgs acceptEventArgs)
@@ -89,7 +99,6 @@ namespace NetworkCore.IOCP
             }
             catch (Exception e)
             {
-                OnError?.Invoke(this, e);
                 Console.WriteLine(e.Message);
             }
         }
@@ -104,11 +113,11 @@ namespace NetworkCore.IOCP
             userToken.ReceiveCompleted += client_ReceiveCompleted;
             userToken.SendCompleted += client_SendCompleted;
             userToken.DisconnectCompleted += client_DisconnectCompleted;
-            userToken.OnError += client_OnError;
             //开始接收数据
-            userToken.StartReceive(null);
+            userToken.ReceiveAsync();
             //把当前异步事件释放，等待下次客户端连接
             StartAccept(acceptEventArgs);
+
         }
 
         //客户端断开连接
@@ -119,7 +128,6 @@ namespace NetworkCore.IOCP
             userToken.DisconnectCompleted -= client_DisconnectCompleted;
             userToken.ReceiveCompleted -= client_ReceiveCompleted;
             userToken.SendCompleted -= client_SendCompleted;
-            userToken.OnError -= client_OnError;
             DisconnectCompleted?.Invoke(this, e);
             //移除客户端
             m_UserTokenPool.Push(userToken);
@@ -141,7 +149,7 @@ namespace NetworkCore.IOCP
 
         private void client_OnError(object sender, Exception e)
         {
-            OnError?.Invoke(this, e);
+            OnClientError?.Invoke(this, e);
         }
     }
 }

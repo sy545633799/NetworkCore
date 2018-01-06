@@ -75,14 +75,8 @@ namespace MySocket
 
             if (TimeoutObject.WaitOne(10000, false))//直到timeout，或者TimeoutObject.set()
             {
-                if (IsconnectSuccess)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                if (IsconnectSuccess) return true;
+                else return false;
             }
             else
             {

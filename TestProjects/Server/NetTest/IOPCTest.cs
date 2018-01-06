@@ -3,6 +3,7 @@ using System;
 using System.Net.Sockets;
 using System.Text;
 using NetworkCore.Utility;
+using System.Threading;
 
 namespace Server.Test
 {
@@ -33,6 +34,19 @@ namespace Server.Test
         {
             Console.WriteLine("客户端连接");
             UserToken userToken = e.UserToken as UserToken;
+            //Console.ReadKey();
+            //userToken.Close();
+            //Thread thread = new Thread(() =>
+            //{
+            //  
+            //    while (true)
+            //    {
+            //        string str = Console.ReadLine();
+            //        if (str == "stop")
+            //            userToken.Close();
+            //    }
+            //});
+            //thread.Start();
         }
     }
 }

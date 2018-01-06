@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="IOCP\Client\GameClient.cs" />
     <Compile Include="IOCP\Common\BaseClient.cs" />
-    <Compile Include="IOCP\Common\IClient.cs" />
     <Compile Include="IOCP\Sock_Wrapper.cs" />
     <Compile Include="IOCP\Utility\DynamicBufferManager.cs" />
     <Compile Include="Utility\ClientPool.cs" />

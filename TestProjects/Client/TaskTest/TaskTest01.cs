@@ -10,7 +10,7 @@ namespace Client.TaskTest
     public class TaskTest01
     {
         Thread t = null;
-        ManualResetEvent manualEvent = new ManualResetEvent(true);//为true,一开始就可以执行
+        ManualResetEvent manualEvent = new ManualResetEvent(false);//为true,一开始就可以执行
 
         public TaskTest01()
         {
@@ -22,12 +22,11 @@ namespace Client.TaskTest
         {
             while (true)
             {
-                this.manualEvent.WaitOne();
-                //if(this.manualEvent.WaitOne(3000, false))
-                    Console.WriteLine("这里是1:  {0}", Thread.CurrentThread.ManagedThreadId);
+                 bool result = this.manualEvent.WaitOne(5000, false); //如果10秒
+                Console.WriteLine("这里是:  {0}", result.ToString());
                 //else
                 //    Console.WriteLine("这里是2:  {0}", Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
             }
         }
 

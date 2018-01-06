@@ -10,24 +10,24 @@ namespace Client.IOPCTest
     {
         public static void Client()
         {
-            GameClient client = new GameClient(1024 * 1024);
-            client.connectCompleted += connectCompleted;
+            GameClient client = new GameClient(65536);
+            client.connectSucess += connectCompleted;
+            client.connectError += connectError;
             client.ReceiveCompleted += ReceiveCompleted;
-            client.Connect("127.0.0.1", 6650);
+            client.Connect("192.168.5.119", 6650);
 
-            //Person person = new Person();
-            //person.Age = 11;
-            //person.Name = "李四";
-            //person.Job = "总统";
-
-            //client.Send(BinaryUtil.ObjectToBinary(person));
             for (int i = 0; i < 1000; i++)
             {
-                client.Send(BinaryUtil.IntToByte(i));
+                client.SendAsync(BinaryUtil.IntToByte(i));
             }
             Console.ReadKey();
 
             client.Close();
+        }
+
+        private static void connectError(object sender, SocketAsyncEventArgs e)
+        {
+            Console.WriteLine("连接失败: " + e.SocketError);
         }
 
         private static void ReceiveCompleted(object sender, MessageEventArgs e)

@@ -10,8 +10,8 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            //IOPCTest.IOPCTest.Client();
-            TaskTest.TaskTest01.Test();
+            IOPCTest.IOPCTest.Client();
+            //TaskTest.TaskTest01.Test();
         }
     }
 }

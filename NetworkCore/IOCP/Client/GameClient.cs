@@ -11,18 +11,21 @@ namespace NetworkCore.IOCP
         ///// <summary>
         ///// 连接完成时引发事件。
         ///// </summary>
-        public event EventHandler<SocketAsyncEventArgs> connectCompleted;
+        public event EventHandler<SocketAsyncEventArgs> connectSucess;
         /// <summary>
-        /// 连接超时处理
+        /// 连接发生错误
         /// </summary>
+        public event EventHandler<SocketAsyncEventArgs> connectError;
+
         public int TimeOut { get; set; }
         private ManualResetEvent TimeoutObject = new ManualResetEvent(false);
-        private Exception socketexception;
 
-        public GameClient(int size)
-            : base(size)
+        public GameClient(int receiveSize, int sendTimeout = 1000, int receiveTimeout = 2000)
+            : base(receiveSize)
         {
             ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            ClientSocket.SendTimeout = sendTimeout;
+            ClientSocket.ReceiveTimeout = receiveTimeout;
         }
 
         public void Connect(string ip, int port)
@@ -39,6 +42,9 @@ namespace NetworkCore.IOCP
 
         private void StartConnect(SocketAsyncEventArgs e)
         {
+            SetHeartBeat();//设置心跳参数
+            TimeoutObject.Reset();
+
             if (e == null)
             {
                 e = new SocketAsyncEventArgs() { RemoteEndPoint = iPEndPoint };
@@ -50,31 +56,55 @@ namespace NetworkCore.IOCP
             //如果没有挂起
             if (!willRaiseEvent)
                 ProcessConnect(e);
+
+            if (TimeoutObject.WaitOne(5000, false))//返回true为TimeoutObject.set(), 返回false为timeout
+            {
+                if (IsConnected)
+                    connectSucess?.Invoke(this, e);
+                else
+                    connectError?.Invoke(this, e); 
+            }
+            else   
+            {
+                Close(null);
+                e.SocketError = SocketError.TimedOut;
+                connectError?.Invoke(this, e);
+            }
+
         }
 
         private void ConnectEventArg_Completed(object sender, SocketAsyncEventArgs e)
         {
-            try
-            {
-                ProcessConnect(e);
-            }
-            catch(Exception E)
-            {
-                Console.WriteLine(E.Message);
-            }
+            ProcessConnect(e);
         }
 
         private void ProcessConnect(SocketAsyncEventArgs e)
         {
             try
             {
-                connectCompleted?.Invoke(this, e);
-                StartReceive(null);
+                if (e.SocketError == SocketError.Success)
+                    ReceiveAsync();
+                else
+                    CloseClientSocket(e);
             }
             catch (Exception E)
             {
-                socketexception = E;
+                Console.WriteLine(E.Message);
             }
+            finally
+            {
+                TimeoutObject.Set();
+            }
+        }
+
+        /// <summary>
+        /// 设置心跳
+        /// </summary>
+        private void SetHeartBeat()
+        {
+            //byte[] inValue = new byte[] { 1, 0, 0, 0, 0x20, 0x4e, 0, 0, 0xd0, 0x07, 0, 0 };// 首次探测时间20 秒, 间隔侦测时间2 秒
+            byte[] inValue = new byte[] { 1, 0, 0, 0, 0x88, 0x13, 0, 0, 0xd0, 0x07, 0, 0 };// 首次探测时间5 秒, 间隔侦测时间2 秒
+            ClientSocket.IOControl(IOControlCode.KeepAliveValues, inValue, null);
         }
     }
 }

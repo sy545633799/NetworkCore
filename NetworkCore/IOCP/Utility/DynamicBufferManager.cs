@@ -12,10 +12,9 @@ namespace NetworkCore.IOCP
 
         //public byte[] writeCache { get; private set; }
 
-        public DynamicBufferManager()
+        public DynamicBufferManager(int maxSize)
         {
-            readCache = new byte[1024 * 1024];
-            //writeCache = new byte[1024 * 1024];
+            readCache = new byte[maxSize];
             readArgs = new MessageEventArgs();
         }
 
