@@ -12,10 +12,9 @@ namespace GameServer.DAO
         public DbSet<User> Users { set; get; }
 
         public DbSet<Account> Accounts { set; get; }
-        
-        //MySql.Data.MySqlClient.MySqlException: The host localhost does not support SSL connections.
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseMySQL(@"Server=localhost;database=LoL;uid=root;pwd=3.1415926;SslMode=None");
+            => optionsBuilder.UseMySQL(@"Server=localhost;database=LoL;uid=root;pwd=3.1415926;SslMode=None");//The host localhost does not support SSL connections.
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
