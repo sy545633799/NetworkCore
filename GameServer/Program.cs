@@ -1,4 +1,5 @@
-﻿using NetworkCore.IOCP;
+﻿using GameServer.Model;
+using NetworkCore.IOCP;
 using System;
 using System.Net.Sockets;
 
@@ -8,12 +9,14 @@ namespace GameServer
     {
         static void Main(string[] args)
         {
-            
-            GameListener listener = new GameListener(10, 1024 * 1024);
-            listener.AcceptCompleted += AcceptCompleted;
-            listener.ReceiveCompleted += ReceiveCompleted;
-            listener.DisconnectCompleted += DisconnectCompleted;
-            listener.Start(6650);
+
+            User user = new User();
+            user.Add();
+            //GameListener listener = new GameListener(10, 1024 * 1024);
+            //listener.AcceptCompleted += AcceptCompleted;
+            //listener.ReceiveCompleted += ReceiveCompleted;
+            //listener.DisconnectCompleted += DisconnectCompleted;
+            //listener.Start(6650);
 
             Console.ReadKey();
         }

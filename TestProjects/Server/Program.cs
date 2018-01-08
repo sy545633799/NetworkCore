@@ -11,7 +11,6 @@ namespace Server
         static void Main(string[] args)
         {
             //Server.Test.IOPCTest.StartListener();
-            EFCoteTest.EFCoreTest.Test();
 
             //IHttpHandler
             //WebSocketServer();

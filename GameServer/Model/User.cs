@@ -1,19 +1,25 @@
+using GameServer.DAO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace GameServer.Model
 {
-    public class User
+    //[Table("user")]
+    public class User : Model<User>
     {
-        public int Id = -1;
-        public string Name;
-        public int Level = 1;
-        public int Exp = 0;
-        public int Win = 0;
-        public int Lose = 0;
-        public int Ran = 0;
-        public int AccountId;
-        public int[] HeroList;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int Exp { get; set; }
+        public int Win { get; set; }
+        public int Lose { get; set; }
+        public int Ran { get; set; }
+        public int AccountId { get; set; }
+        public string HeroList { get; set; }
+
+        public override void Add(){ Add(context => { context.Users.Add(this); }); }
     }
 }
