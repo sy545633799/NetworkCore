@@ -10,7 +10,8 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            Server.Test.IOPCTest.StartListener();
+            //Server.Test.IOPCTest.StartListener();
+            EFCoteTest.EFCoreTest.Test();
 
             //IHttpHandler
             //WebSocketServer();
@@ -26,14 +27,14 @@ namespace Server
             HttpListenerResponse response = context.Response;
             string responseString = string.Format("<HTML><BODY> {0}</BODY></HTML>", DateTime.Now);
             byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
-            //对客户端输出相应信息.
+            //瀵瑰鎴风杈撳嚭鐩稿簲淇℃伅.
             response.ContentLength64 = buffer.Length;
             System.IO.Stream output = response.OutputStream;
             output.Write(buffer, 0, buffer.Length);
-            //关闭输出流，释放相应资源
+            //鍏抽棴杈撳嚭娴侊紝閲婃斁鐩稿簲璧勬簮
             output.Close();
 
-            listener.Stop(); //关闭HttpListener
+            listener.Stop(); //鍏抽棴HttpListener
         }
 
         static async void WebSocketServer()

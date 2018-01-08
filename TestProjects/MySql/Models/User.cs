@@ -10,6 +10,6 @@ namespace MySql.Models
         public int UserId { set; get; }
         public string Name { set; get; }
         public int Age { set; get; }
-       
+        
     }
 }

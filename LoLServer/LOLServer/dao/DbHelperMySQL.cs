@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Data;
@@ -15,7 +15,7 @@ namespace Maticsoft.DBUtility
     public abstract class DbHelperMySQL
     {
         //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.		
-        public static string connectionString = "Server=119.29.9.189;Database=LOL;Uid=Ace;Pwd=123456;";//PubConstant.ConnectionString;
+        public static string connectionString = "Server=127.0.0.1;Database=LOL;Uid=root;Pwd=3.1415926;";//PubConstant.ConnectionString;
         public DbHelperMySQL()
         {            
         }

@@ -1,4 +1,4 @@
-﻿using MySql.Data;
+using MySql.Data;
 using MySql.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace Server.EFCoteTest
 {
     public class EFCoreTest
     {
-        public void Test()
+        public static void Test()
         {
             using (var context = new DataContext())
             {
@@ -21,7 +21,7 @@ namespace Server.EFCoteTest
                 //context.Remove<User>(user);
                 //User user = new User { Name = "新的小鸟5"};
 
-                User usr = new User { Name = "test01", Age = 18 };
+                User usr = new User { Name = "test12345", Age =  5555 };
                 context.Add(usr);
                 context.SaveChanges();
 
@@ -30,6 +30,8 @@ namespace Server.EFCoteTest
                 //Console.ReadKey();
 
             }
+
+            Console.ReadKey();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MySql.Data
         public DbSet<Blog> Blogs { set; get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseMySQL(@"Server=localhost;database=ef;uid=root;pwd=3.1415926;SslMode=None");
+            => optionsBuilder.UseMySQL(@"Server=localhost;database=test01;uid=root;pwd=3.1415926;SslMode=None");
         
     }
 }
